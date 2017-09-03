@@ -6,10 +6,10 @@
 </head>
 <body ng-controller= "myController">
 	<div id="mainCalculator">
-		<input type="text" name="result" class="result" ng-model="result"/><br/>
+		<input type="text" name="result" class="result" ng-model="result" readonly/><br/>
 	
 		<div class="digits">
-			<button ng-repeat="x in allNumbers track by x" class="allButtons" ng-click="pushNumber(x)"> {{ x }}</button>
+			<button ng-repeat="x in allNumbers track by x" class="allButtons" ng-disabled="x=='%' ? true : false" ng-click="pushNumber(x)"> {{ x }}</button>
 			<button class="allButtons equal" ng-click="calculate()"> = </button>
 			<button class="allButtons equalWidth" ng-click="clearAll()"> Clear All </button>
 			<button class="allButtons equalWidth" ng-click="deleteOneChar()"> Delete </button>
