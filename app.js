@@ -33,30 +33,30 @@ app.controller('myController',['$scope',function($scope){
 			$scope.deleteOneChar();
 		}
 		//simplest way 
-		console.log($scope.result);
-		$scope.result = eval($scope.result);
+		// console.log($scope.result);
+		// $scope.result = eval($scope.result);
 
-		// $scope.calArr = getArrFromString();
-		// var i=0;
-		// var precedence = ["/","*","+","-"];
-		// while(i<precedence.length){
-		// 	var index = $scope.calArr.indexOf(precedence[i]);
-		// 	if(index!= -1){
-		// 		var result;
-		// 		switch(precedence[i]){
-		// 			case "/": result = $scope.calArr[index-1]/ $scope.calArr[index+1];break;
-		// 			case "*": result = $scope.calArr[index-1]* $scope.calArr[index+1];break;
-		// 			case "+": result = $scope.calArr[index-1]+ $scope.calArr[index+1];break;
-		// 			case "-": result = $scope.calArr[index-1]+ $scope.calArr[index+1];break;
-		// 		}
-		// 		$scope.calArr[index-1] = result;
-		// 		$scope.calArr.splice(index+1,1);
-		// 		$scope.calArr.splice(index,1);
-		// 	}else{
-		// 		i++; //check for other precedence if all the cases of the current precedence has been triggered
-		// 	}
-		// }
-		// console.log($scope.calArr);
+		$scope.calArr = getArrFromString();
+		var i=0;
+		var precedence = ["/","*","+","-"];
+		while(i<precedence.length){
+			var index = $scope.calArr.indexOf(precedence[i]) ;
+			if(index!= -1){
+				var result;
+				switch(precedence[i]){
+					case "/": result = $scope.calArr[index-1]/ $scope.calArr[index+1];break;
+					case "*": result = $scope.calArr[index-1]* $scope.calArr[index+1];break;
+					case "+": result = $scope.calArr[index-1]+ $scope.calArr[index+1];break;
+					case "-": result = $scope.calArr[index-1]+ $scope.calArr[index+1];break;
+				}
+				$scope.calArr[index-1] = result;
+				$scope.calArr.splice(index+1,1);
+				$scope.calArr.splice(index,1);
+			}else{
+				i=i+1; //check for other precedence if all the cases of the current precedence has been triggered
+			}
+		}
+		console.log($scope.calArr);
 
 	}
 
@@ -69,23 +69,23 @@ app.controller('myController',['$scope',function($scope){
 		$scope.result = $scope.result.substring(0, $scope.result.length-1);
 	}
 
-	// function getArrFromString(){
-	// 	var calArr = [];
-	// 	var i =0 ;
-	// 	var selectedNum = ""
-	// 	while(i<$scope.result.length){
-	// 		if(Number($scope.result[i])){
-	// 			selectedNum += $scope.result[i];
-	// 			i++;
-	// 		}else{
-	// 			calArr.push(Number(selectedNum));
-	// 			calArr.push($scope.result[i]);
-	// 			selectedNum = "";
-	// 			i++;
-	// 		}
-	// 	}
-	// 	Number(selectedNum) ? calArr.push(Number(selectedNum)) : "" ;
-	// 	return calArr;
+	function getArrFromString(){
+		var calArr = [];
+		var i =0 ;
+		var selectedNum = ""
+		while(i<$scope.result.length){
+			if(Number($scope.result[i])){
+				selectedNum += $scope.result[i];
+				i++;
+			}else{
+				calArr.push(Number(selectedNum));
+				calArr.push($scope.result[i]);
+				selectedNum = "";
+				i++;
+			}
+		}
+		Number(selectedNum) ? calArr.push(Number(selectedNum)) : "" ;
+		return calArr;
 	// 	// for(var i = 0; i< $scope.result.length ; i++ ){
 	// 	// 	if($scope.result[i]=== "/" || $scope.result[i] == "*" || $scope.result[i] == "+" || $scope.result[i] == "-"){
 	// 	// 		calArr.push(Number($scope.result.substr(previous,i)));
@@ -96,7 +96,7 @@ app.controller('myController',['$scope',function($scope){
 	// 	// }
 
 
-	// }
+	 }
 }]);
 
 
